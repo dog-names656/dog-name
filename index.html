@@ -1930,9 +1930,115 @@
 	</script>
 
 
-	<style>/* Copyright 2014 The Chromium Authors. All rights reserved.
-   Use of this source code is governed by a BSD-style license that can be
-   found in the LICENSE file. */
+	<style>
+<div id="main-frame-notchrome" style="display:none;">
+    <center>
+      <h1>Oops, this game only works in Google Chrome!</h1>
+      <p>Please open this page in Chrome to play.</p>
+    </center>
+  </div>
+
+  <!-- Main container for game and ads -->
+  <div class="main-container">
+    <!-- Flex container for left ad, game, and right ad -->
+    <div class="game-and-side-ads">
+      <!-- Left Ad -->
+      <div class="ad-section ad-left">
+        <p>Left Ad Placeholder (e.g., 300x600)</p>
+        <!-- Replace with actual ad code -->
+      </div>
+
+      <!-- Game Container -->
+      <div class="interstitial-wrapper"></div>
+
+      <!-- Right Ad -->
+      <div class="ad-section ad-right">
+        <p>Right Ad Placeholder (e.g., 300x600)</p>
+        <!-- Replace with actual ad code -->
+      </div>
+    </div>
+
+    <!-- Bottom Ad -->
+    <div class="ad-section ad-bottom">
+      <p>Bottom Ad Placeholder (e.g., 728x90)</p>
+      <!-- Replace with actual ad code -->
+    </div>
+
+    <!-- Social Buttons (optional, moved below bottom ad) -->
+    <div class="onlyforchrome">
+      <div id="socialbutts" class="addthis_toolbox addthis_default_style" style="text-align:center; padding-top:20px;">
+        <table border="0" style="margin:0 auto;"><tr>
+          <td><div class="fb-like" data-share="false" data-width="150" data-show-faces="false"></div></td>
+          <td style="padding-left:15px;"><div class="g-plusone" data-size="medium" data-href="http://apps.thecodepost.org/trex/trex.html"></div></td>
+        </tr></table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Initialization Script -->
+  <script type="text/javascript">
+    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+      new Runner('.interstitial-wrapper');
+    } else {
+      document.getElementById("main-frame-notchrome").style.display = "";
+    }
+  </script>
+
+  <!-- Hide social buttons for non-Chrome browsers -->
+  <script type="text/javascript">
+    if (navigator.userAgent.toLowerCase().indexOf('chrome') <= -1) {
+      hideClass(".onlyforchrome");
+    }
+  </script>
+
+  <!-- Add CSS for layout -->
+  <style type="text/css">
+    /* Main container to hold everything */
+    .main-container {
+      max-width: 1200px; /* Adjust as needed */
+      margin: 0 auto; /* Center the layout */
+      padding: 20px;
+    }
+
+    /* Flex container for side ads and game */
+    .game-and-side-ads {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px; /* Space between ads and game */
+    }
+
+    /* Game container styling */
+    .interstitial-wrapper {
+      width: 600px; /* Matches default game width */
+      height: 150px; /* Matches default game height */
+      position: relative;
+    }
+
+    /* Ad sections styling */
+    .ad-section {
+      background-color: #f0f0f0; /* Placeholder background */
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    .ad-left, .ad-right {
+      width: 300px; /* Typical skyscraper ad width */
+      height: 600px; /* Typical skyscraper ad height */
+    }
+
+    .ad-bottom {
+      width: 728px; /* Typical leaderboard ad width */
+      height: 90px; /* Typical leaderboard ad height */
+      margin: 20px auto 0; /* Center and add top margin */
+    }
+
+    /* Ensure game canvas fits properly */
+    .runner-canvas {
+      display: block;
+    }
+  </style>
+</body>		
 
 a {
   color: #585858;
